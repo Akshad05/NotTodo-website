@@ -21,7 +21,7 @@ const News = (props)=>{
         setLoading(true)
         let data = await fetch(url);
         props.setProgress(30);
-        let parsedData = await data.json()
+        let parsedData = await data.json() 
         props.setProgress(70);
         setArticles(parsedData.articles)
         setTotalResults(parsedData.totalResults)
@@ -47,10 +47,11 @@ const News = (props)=>{
  
         return (
             <>
-                <h1 className="text-center" style={{ margin: '35px 0px', marginTop: '90px' }}>NewsMonkey - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
+                <h1 className="text-center" style={{ margin: '35px 0px', marginTop: '90px' }}>NewsBits - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
                 {loading && <Spinner />}
                 <InfiniteScroll
                     dataLength={articles.length}
+
                     next={fetchMoreData}
                     hasMore={articles.length !== totalResults}
                     loader={<Spinner/>}
@@ -84,4 +85,4 @@ News.propTypes = {
     category: PropTypes.string,
 }
 
-export default News
+export default News;
