@@ -1,40 +1,96 @@
-import './App.css';
+import "./App.css";
 
-import React, { useState } from 'react'
-import NavBar from './components/NavBar';
-import News from './components/News';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import LoadingBar from 'react-top-loading-bar'
+import React, { useState } from "react";
+import NavBar from "./components/NavBar";
+import Sidebar from "./components/Sidebar";
+// import { useHistory } from "react-router-dom";
 
-const App = ()=> {
+// import News from "./components/News";
+import "./components/style.css";
+import newsIcon from "./components/newsIcon";
+// import Login from "./components/Login";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import LoadingBar from "react-top-loading-bar";
+import { AnimatePresence } from "framer-motion/dist/framer-motion";
+import AnimatedRoutes from "./components/AnimatedRoutes";
+
+const App = () => {
   const pageSize = 5;
-  const apiKey = "0d0df8efeaf542be8b538ad5dbd71953"
+  const apiKey = "af96914f4d0d49e6b3149fc1c6fa764a";
   // process.env.REACT_APP_NEWS_API
-  const [progress, setProgress] = useState(0)
- 
-    return (
-      <div>
-        <Router>
-        <NavBar/> 
-        <LoadingBar
-        height={3}
-        color='#f11946'
-        progress={progress} 
-      />
-        <Switch>
-          <Route exact path="/"><News setProgress={setProgress} apiKey={apiKey} key="general" pageSize={pageSize} country="in" category="general"/></Route> 
-          <Route exact path="/business"><News setProgress={setProgress} apiKey={apiKey} key="business" pageSize={pageSize} country="in" category="business"/></Route> 
-          <Route exact path="/entertainment"><News setProgress={setProgress} apiKey={apiKey} key="entertainment" pageSize={pageSize} country="in" category="entertainment"/></Route> 
-          <Route exact path="/general"><News setProgress={setProgress} apiKey={apiKey} key="general" pageSize={pageSize} country="in" category="general"/></Route> 
-          <Route exact path="/health"><News setProgress={setProgress} apiKey={apiKey} key="health" pageSize={pageSize} country="in" category="health"/></Route> 
-          <Route exact path="/science"><News setProgress={setProgress} apiKey={apiKey} key="science" pageSize={pageSize} country="in" category="science"/></Route> 
-          <Route exact path="/sports"><News setProgress={setProgress} apiKey={apiKey} key="sports" pageSize={pageSize} country="in" category="sports"/></Route> 
-          <Route exact path="/technology"><News setProgress={setProgress} apiKey={apiKey} key="technology" pageSize={pageSize} country="in" category="technology"/></Route> 
-        </Switch>
-        </Router>
-      </div>
-    )
- 
-}
+  const [progress, setProgress] = useState(0);
+
+  const toggleFunction = () => {
+    if (mode === "light") {
+      setMode("dark");
+      document.body.style.backgroundImage = `url("https://cdn.statically.io/img/i.pinimg.com/736x/17/06/b6/1706b65720ee6671eaa6bf5db59a4d3a.jpg")`; //"#150020"; //#360036
+
+      showAlert("success", "Dark mode activated");
+    } else {
+      setMode("light");
+      document.body.style.backgroundImage = `url("https://i.pinimg.com/736x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg")`;
+      showAlert("success", "Light mode activated");
+    }
+  };
+
+  const [alert, setAlert] = useState(null);
+
+  const showAlert = (type, message) => {
+    setAlert({
+      type: type,
+      msg: message,
+    });
+    setTimeout(() => {
+      setAlert(null);
+    }, 2000);
+  };
+
+  const [mode, setMode] = useState("light");
+  const [sidebar, setSidebar] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebar((prevState) => !prevState);
+  };
+
+  // let history = useHistory();
+
+  // const routeChange = () => {
+  //   history.push("/Login");
+  // };
+
+  // window.addEventListener("DOMContentLoaded", (event) => {
+  //   const signInButton = document.querySelector("#signInBtn");
+  //   const signUpButton = document.querySelector("#signUpBtn");
+
+  //   signUpButton.addEventListener("click", () => {
+
+  //   });
+
+  //   signInButton.addEventListener("click", () => {
+
+  //   });
+  // });
+
+  return (
+    <div>
+      <Router>
+        <NavBar
+          toggle={toggleFunction}
+          mode={mode}
+          openSidebar={toggleSidebar}
+        />
+        <LoadingBar height={3} color="#f11946" progress={progress} />
+        <AnimatedRoutes mode={mode} setProgress={setProgress} />
+        <Sidebar sidebar={sidebar} />
+        <newsIcon />
+      </Router>
+    </div>
+  );
+};
 
 export default App;
