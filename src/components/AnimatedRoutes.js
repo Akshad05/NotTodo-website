@@ -15,6 +15,11 @@ import Logout from "./Logout";
 
 import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
 import Login from "./Login";
+import AboutUs from "./AboutUs";
+import Privacy from "./Privacy";
+import Terms from "./Terms";
+import Disclaimer from "./Disclaimer";
+import Summary from "./Summary";
 
 const AnimatedRoutes = (props) => {
   const pageSize = 5;
@@ -265,6 +270,76 @@ const AnimatedRoutes = (props) => {
             exit={{ opacity: 0, transition: { duration: 0.6 } }}
           >
             <Logout />
+          </motion.div>
+        </Route>
+
+        <Route exact path="/AboutUs">
+          <motion.div
+            // initial={{ width: 0 }}
+            // animate={{ width: "100%" }}
+            // exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
+
+            initial={{ opacity: 0, transition: { duration: 0.8 } }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.6 } }}
+          >
+            <AboutUs />
+          </motion.div>
+        </Route>
+
+        <Route exact path="/Privacy">
+          <motion.div
+            // initial={{ width: 0 }}
+            // animate={{ width: "100%" }}
+            // exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
+
+            initial={{ opacity: 0, transition: { duration: 0.8 } }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.6 } }}
+          >
+            <Privacy />
+          </motion.div>
+        </Route>
+
+        <Route exact path="/Terms">
+          <motion.div
+            // initial={{ width: 0 }}
+            // animate={{ width: "100%" }}
+            // exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
+
+            initial={{ opacity: 0, transition: { duration: 0.8 } }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.6 } }}
+          >
+            <Terms />
+          </motion.div>
+        </Route>
+
+        <Route exact path="/Disclaimer">
+          <motion.div
+            // initial={{ width: 0 }}
+            // animate={{ width: "100%" }}
+            // exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
+
+            initial={{ opacity: 0, transition: { duration: 0.8 } }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.6 } }}
+          >
+            <Disclaimer />
+          </motion.div>
+        </Route>
+
+        <Route exact path="/Summary">
+          <motion.div
+            // initial={{ width: 0 }}
+            // animate={{ width: "100%" }}
+            // exit={{ x: window.innerWidth, transition: { duration: 0.4 } }}
+
+            initial={{ opacity: 0, transition: { duration: 0.8 } }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.6 } }}
+          >
+            <Summary />
           </motion.div>
         </Route>
       </Switch>

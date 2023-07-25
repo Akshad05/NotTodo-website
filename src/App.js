@@ -3,6 +3,8 @@ import "./App.css";
 import React, { useState } from "react";
 import NavBar from "./components/NavBar";
 import Sidebar from "./components/Sidebar";
+import Backdrop from "./components/Backdrop";
+import Footer from "./components/Footer";
 // import { useHistory } from "react-router-dom";
 
 // import News from "./components/News";
@@ -21,7 +23,7 @@ import AnimatedRoutes from "./components/AnimatedRoutes";
 
 const App = () => {
   const pageSize = 5;
-  const apiKey = "af96914f4d0d49e6b3149fc1c6fa764a";
+  const apiKey = "092870643fc44645ad6a0fd3f6463372";
   // process.env.REACT_APP_NEWS_API
   const [progress, setProgress] = useState(0);
 
@@ -86,8 +88,10 @@ const App = () => {
         />
         <LoadingBar height={3} color="#f11946" progress={progress} />
         <AnimatedRoutes mode={mode} setProgress={setProgress} />
+        <Backdrop sidebar={sidebar} closeSidebar={toggleSidebar} />
         <Sidebar sidebar={sidebar} />
         <newsIcon />
+        <Footer />
       </Router>
     </div>
   );

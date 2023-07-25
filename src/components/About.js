@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 const About = () => {
   const history = useHistory();
   const [userData, setUserData] = useState("");
+
   const callAboutPage = async () => {
     try {
       const res = await fetch("/about", {
@@ -31,6 +33,27 @@ const About = () => {
   useEffect(() => {
     callAboutPage();
   }, []);
+
+  //Profile image adding functions
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedImage(file);
+
+    // Create a temporary URL for the preview image
+    const imagePreview = URL.createObjectURL(file);
+    setPreviewImage(imagePreview);
+  };
+
+  const handleUpload = () => {
+    // You can perform any upload logic here
+    // For example, you can use the Fetch API or an external library like Axios to send the image to a server.
+    // For this example, we'll just log the image object to the console.
+    console.log(selectedImage);
+  };
+
   return (
     <>
       <div className="container emp-profile">
@@ -38,11 +61,26 @@ const About = () => {
           <div className="row rowProf">
             <div className="col-md-4">
               <div className="profile-img">
-                <img
-                  className="imageprof"
-                  src="https://i.pinimg.com/736x/a8/57/00/a85700f3c614f6313750b9d8196c08f5.jpg"
-                  alt="user"
-                />
+                {!previewImage && (
+                  <img
+                    className="imageprof"
+                    // src={selectedImage}
+                    src="https://i.pinimg.com/736x/a8/57/00/a85700f3c614f6313750b9d8196c08f5.jpg"
+                    alt="user"
+                  />
+                )}
+                {previewImage && (
+                  <img
+                    src={previewImage}
+                    className="imageprof"
+                    alt="Preview"
+                    style={{ maxWidth: "300px" }}
+                  />
+                )}
+
+                <input type="file" onChange={handleImageChange} />
+                {/* <button onClick={handleUpload}>Upload</button> */}
+
                 {/* <i className="fa-solid fa-user fa-flip fa-2xl imageProfile"></i> */}
               </div>
             </div>
