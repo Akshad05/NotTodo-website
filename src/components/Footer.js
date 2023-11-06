@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import newsGif from "./gifNews.gif";
+import newsGif from "./gifTodo.gif";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const websiteName = "NewsBits";
+  const websiteName = "NotTodo";
 
   return (
     <>
@@ -36,15 +36,6 @@ const Footer = () => {
               </li>
             </Link>
 
-            {/* <li className="sideText">
-        <i class="fa-solid fa-gear fa-spin"></i>Settings
-      </li>
-      <li className="sideText">
-        <i class="fa-solid fa-phone fa-shake"></i>Contact Us
-      </li>
-      <li className="sideText">
-        <i class="fa-solid fa-address-card fa-fade"></i>About Us
-      </li> */}
             <Link className="linkText" to="/Feedback">
               <li className="">
                 <i
@@ -54,7 +45,6 @@ const Footer = () => {
                 Feedback
               </li>
             </Link>
-            {/* <li className="sideText">LinkedIn</li> */}
 
             <Link className="linkText" to="/About">
               <li className="">

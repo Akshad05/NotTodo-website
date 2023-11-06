@@ -19,6 +19,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  type: {
+    type: String,
+    required: true,
+  },
+  sortBy: {
+    type: String,
+    default: "priority",
+  },
   tokens: [
     {
       token: {
@@ -29,7 +37,7 @@ const userSchema = new mongoose.Schema({
   ],
 });
 
-//we are hashing the password
+//hashing the password
 userSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
     this.password = await bcrypt.hash(this.password, 12);
@@ -38,7 +46,7 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-// We are generating token
+// generating token
 userSchema.methods.generateAuthToken = async function () {
   try {
     let token1 = jwt.sign({ _id: this._id }, process.env.SECRET_KEY);
@@ -50,6 +58,6 @@ userSchema.methods.generateAuthToken = async function () {
   }
 };
 
-const User = mongoose.model("SIGNUP", userSchema);
+const User = mongoose.model("REGUSER", userSchema);
 
 module.exports = User;

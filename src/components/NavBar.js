@@ -18,7 +18,7 @@ const NavBar = (props) => {
         </div>
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            NewsBits
+            NotTodo
           </Link>
           <button
             className="navbar-toggler"
@@ -35,42 +35,7 @@ const NavBar = (props) => {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link className="nav-link" aria-current="page" to="/">
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/business">
-                  Business
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/entertainment">
-                  Entertainment
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/general">
-                  General
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/health">
-                  Health
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/science">
-                  Science
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/sports">
-                  Sports
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/technology">
-                  Technology
+                  NotTodo-list
                 </Link>
               </li>
             </ul>
@@ -96,7 +61,11 @@ const NavBar = (props) => {
           </div>
           <Link to="/Logout">
             <li className="logout">
-              <i class="fa-solid fa-arrow-right-from-bracket logoutLogo"></i>
+              <i class="fa-solid fa-arrow-right-from-bracket logoutLogo"> </i>
+              <label className="form-check-label" style={{ paddingLeft: 5 }}>
+                {" "}
+                LOGOUT
+              </label>
             </li>
           </Link>
         </div>

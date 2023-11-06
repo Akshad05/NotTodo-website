@@ -1,10 +1,14 @@
 import "./App.css";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "./components/NavBar";
 import Sidebar from "./components/Sidebar";
+
 import Backdrop from "./components/Backdrop";
 import Footer from "./components/Footer";
+import BackdropAdd from "./components/BackdropAdd";
+import BackdropUpdate from "./components/BackdropUpdate";
+
 // import { useHistory } from "react-router-dom";
 
 // import News from "./components/News";
@@ -20,6 +24,7 @@ import {
 import LoadingBar from "react-top-loading-bar";
 import { AnimatePresence } from "framer-motion/dist/framer-motion";
 import AnimatedRoutes from "./components/AnimatedRoutes";
+import Admin_Nottodo from "./components/Admin_Nottodo";
 
 const App = () => {
   const pageSize = 5;
@@ -31,7 +36,7 @@ const App = () => {
     if (mode === "light") {
       setMode("dark");
       document.body.style.backgroundImage = `url("https://cdn.statically.io/img/i.pinimg.com/736x/17/06/b6/1706b65720ee6671eaa6bf5db59a4d3a.jpg")`; //"#150020"; //#360036
-
+      // document.body.style.backgroundImage = `url("https://wallpapers.com/images/featured/pattern-4u7ed6koskqhcez1.jpg")`;
       showAlert("success", "Dark mode activated");
     } else {
       setMode("light");
@@ -51,12 +56,26 @@ const App = () => {
       setAlert(null);
     }, 2000);
   };
+  useEffect(() => {
+    document.body.style.backgroundImage = `url("https://i.pinimg.com/736x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg")`;
+  }, []);
 
   const [mode, setMode] = useState("light");
   const [sidebar, setSidebar] = useState(false);
-
+  const [sideAdd, setSideAdd] = useState(false);
+  const [sideUpdate, setSideUpdate] = useState(false);
+  const [sideAck, setSideAck] = useState(false);
   const toggleSidebar = () => {
     setSidebar((prevState) => !prevState);
+  };
+  const toggleSideAdd = () => {
+    setSideAdd((prevState) => !prevState);
+  };
+  const toggleSideUpdate = () => {
+    setSideUpdate((prevState) => !prevState);
+  };
+  const toggleSideAck = () => {
+    setSideAck((prevState) => !prevState);
   };
 
   // let history = useHistory();
@@ -85,11 +104,24 @@ const App = () => {
           toggle={toggleFunction}
           mode={mode}
           openSidebar={toggleSidebar}
+          // openSideAdd={toggleSideAdd}
         />
         <LoadingBar height={3} color="#f11946" progress={progress} />
-        <AnimatedRoutes mode={mode} setProgress={setProgress} />
+        <AnimatedRoutes
+          mode={mode}
+          setProgress={setProgress}
+          sideAdd={sideAdd}
+          sideUpdate={sideUpdate}
+          openSideAdd={toggleSideAdd}
+          openSideUpdate={toggleSideUpdate}
+          // openSideAck={toggleSideAck}
+          // sideAck={sideAck}
+        />
+
         <Backdrop sidebar={sidebar} closeSidebar={toggleSidebar} />
+        {/* <BackdropAdd sideAdd={sideAdd} closeSidebar={toggleSideAdd} /> */}
         <Sidebar sidebar={sidebar} />
+        {/* <Admin_Nottodo sideAdd={sideAdd} /> */}
         <newsIcon />
         <Footer />
       </Router>

@@ -1,70 +1,29 @@
 import React from "react";
 import { useFormik } from "formik";
 import { signInSchema } from "../schemas";
-import { signUpSchema } from "../schemas/signUp";
 import { Link, useHistory } from "react-router-dom";
 import "./style.css";
 import "./login.svg";
-var init = true;
-var schema = signInSchema;
+
+// var schema = signInSchema;
 
 const Login = () => {
   const history = useHistory();
-  const signUpTransition = () => {
-    // global = init;
 
-    const container = document.querySelector(".loginContainer");
-    container.classList.add("sign_up_mode");
-    init = true;
-    schema = signUpSchema;
+  const initialValues = {
+    email: "",
+    password: "",
   };
-
-  const signInTransition = () => {
-    // global = init;
-
-    const container = document.querySelector(".loginContainer");
-    container.classList.remove("sign_up_mode");
-    init = false;
-    schema = signInSchema;
-  };
-  var initialValues = {};
-
-  if (!init) {
-    // schema = signInSchema;
-    initialValues = {
-      email: "",
-      password: "",
-      // email: "",
-      // username2: "",
-      // password2: "",
-    };
-  } else {
-    // schema = signUpSchema;
-    initialValues = {
-      email: "",
-      username2: "",
-      password2: "",
-    };
-  }
-  // const initialValues2 = {
-  //   email: "",
-  //   username2: "",
-  //   password2: "",
-  // };
 
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
-
-      validationSchema: schema,
-      // validationSchema: signUpSchema,
+      validationSchema: signInSchema,
       onSubmit: (values, action) => {
         console.log(values);
         action.resetForm();
       },
     });
-
-  console.log(errors);
 
   const PostData = async (e) => {
     e.preventDefault();
@@ -97,13 +56,6 @@ const Login = () => {
     <>
       <div className="body">
         <div className="loginContainer">
-          <div className="closeArea">
-            <Link className="linkText" to="/">
-              <button className="closeButtonLeft">
-                <i class="fa-solid fa-xmark"></i>
-              </button>
-            </Link>
-          </div>
           <div className="signin-signup">
             <form className="sign-in-form" onSubmit={handleSubmit}>
               <h2 className="title">Log In</h2>
@@ -112,7 +64,7 @@ const Login = () => {
                 <i className="fas fa-envelope"></i>
 
                 <input
-                  type="text"
+                  type="email"
                   placeholder="Email"
                   name="email"
                   id="email"
@@ -215,7 +167,7 @@ const Login = () => {
                   name="password2"
                   id="password2"
                   autoComplete="off"
-                  value={values.password2}
+                  value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
@@ -272,11 +224,7 @@ const Login = () => {
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo
                   ut quas deleniti recusandae quam quidem!
                 </p>
-                <button
-                  className="bttn "
-                  id="signInBtn"
-                  onClick={signInTransition}
-                >
+                <button className="bttn " id="signInBtn">
                   Log in
                 </button>
               </div>
@@ -296,11 +244,7 @@ const Login = () => {
                   ut quas deleniti recusandae quam quidem!
                 </p>
                 <Link className="linkText" to="/SignUp">
-                  <button
-                    className="bttn "
-                    id="signUpBtn"
-                    onClick={signUpTransition}
-                  >
+                  <button className="bttn " id="signUpBtn">
                     Sign up
                   </button>
                 </Link>

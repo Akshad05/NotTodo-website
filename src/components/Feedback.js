@@ -7,22 +7,17 @@ const Feedback = () => {
   const initialValues = {
     username: "",
     password: "",
-    // email: "",
-    // username2: "",
-    // password2: "",
   };
 
-  const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: initialValues,
+  const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: initialValues,
 
-      validationSchema: signInSchema,
-      // validationSchema: signUpSchema,
-      onSubmit: (values, action) => {
-        console.log(values);
-        action.resetForm();
-      },
-    });
+    validationSchema: signInSchema,
+    onSubmit: (values, action) => {
+      console.log(values);
+      action.resetForm();
+    },
+  });
 
   console.log(errors);
 
@@ -43,46 +38,6 @@ const Feedback = () => {
               <div className="feedHeadline">
                 Please provide feedback on the quality of service
               </div>
-              <div className="radioButtons">
-                <input
-                  type="radio"
-                  name="feedRadio"
-                  value="Excellent"
-                  id="Excellent"
-                />
-                <label htmlFor="Excellent" className="radio">
-                  Excellent
-                </label>
-                <input
-                  type="radio"
-                  name="feedRadio"
-                  value="veryGood"
-                  id="veryGood"
-                />
-                <label htmlFor="veryGood" className="radio">
-                  Very Good
-                </label>
-
-                <input type="radio" name="feedRadio" value="Good" id="Good" />
-                <label htmlFor="Good" className="radio">
-                  Good
-                </label>
-
-                <input
-                  type="radio"
-                  name="feedRadio"
-                  value="average"
-                  id="average"
-                />
-                <label htmlFor="average" className="radio">
-                  Average
-                </label>
-
-                <input type="radio" name="feedRadio" value="Poor" id="Poor" />
-                <label htmlFor="Poor" className="radio">
-                  Poor
-                </label>
-              </div>
 
               {/* <i className="fas fa-user" htmlFor="username"></i> */}
               <div className="feedHeadline">Give your suggestions here</div>
@@ -97,71 +52,6 @@ const Feedback = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-
-              {/* {errors.username && touched.username ? (
-                <small className="form-error">{errors.username}</small>
-              ) : null}
-            </div>
-
-            <div className="input-field">
-              <i className="fas fa-lock" htmlFor="password"></i>
-
-              <input
-                type="password"
-                placeholder="Password"
-                name="password"
-                id="password"
-                autoComplete="off"
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {errors.password && touched.password ? (
-                <small className="form-error">{errors.password}</small>
-              ) : null} */}
-            </div>
-            <div className="feedHeadline">
-              Please provide feedback on the quality of service
-            </div>
-            <div className="radioButtons">
-              <input
-                type="radio"
-                name="feedRadio"
-                value="Excellent"
-                id="Excellent"
-              />
-              <label htmlFor="Excellent" className="radio">
-                Excellent
-              </label>
-              <input
-                type="radio"
-                name="feedRadio"
-                value="veryGood"
-                id="veryGood"
-              />
-              <label htmlFor="veryGood" className="radio">
-                Very Good
-              </label>
-
-              <input type="radio" name="feedRadio" value="Good" id="Good" />
-              <label htmlFor="Good" className="radio">
-                Good
-              </label>
-
-              <input
-                type="radio"
-                name="feedRadio"
-                value="average"
-                id="average"
-              />
-              <label htmlFor="average" className="radio">
-                Average
-              </label>
-
-              <input type="radio" name="feedRadio" value="Poor" id="Poor" />
-              <label htmlFor="Poor" className="radio">
-                Poor
-              </label>
             </div>
 
             <input type="submit" value="Submit" className="bttn" />
@@ -177,7 +67,6 @@ const Feedback = () => {
                 ut quas deleniti recusandae quam quidem!
               </p>
             </div>
-            {/* <img src="signin.svg" alt="" className="image" /> */}
           </div>
 
           <div className="panel right-panel">

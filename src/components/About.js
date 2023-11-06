@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
+
 const About = () => {
   const history = useHistory();
   const [userData, setUserData] = useState("");
@@ -47,13 +47,6 @@ const About = () => {
     setPreviewImage(imagePreview);
   };
 
-  const handleUpload = () => {
-    // You can perform any upload logic here
-    // For example, you can use the Fetch API or an external library like Axios to send the image to a server.
-    // For this example, we'll just log the image object to the console.
-    console.log(selectedImage);
-  };
-
   return (
     <>
       <div className="container emp-profile">
@@ -79,9 +72,6 @@ const About = () => {
                 )}
 
                 <input type="file" onChange={handleImageChange} />
-                {/* <button onClick={handleUpload}>Upload</button> */}
-
-                {/* <i className="fa-solid fa-user fa-flip fa-2xl imageProfile"></i> */}
               </div>
             </div>
 
@@ -105,17 +95,6 @@ const About = () => {
                       About
                     </a>
                   </li>
-                  {/* <li className="nav-item">
-                    <a
-                      href="#profile"
-                      className="nav-link active"
-                      id="profile-tab"
-                      data-toggle="tab"
-                      role="tab"
-                    >
-                      Timeline
-                    </a>
-                  </li> */}
                 </ul>
               </div>
             </div>

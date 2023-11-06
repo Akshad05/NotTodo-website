@@ -32,11 +32,11 @@ const Disclaimer = () => {
         <li>
           <strong>Website</strong> refers to NewsBits, accessible from{" "}
           <a
-            href="https://www.NewsBits.com"
+            href="https://www.NotTodo.com"
             rel="external nofollow noopener"
             target="_blank"
           >
-            https://www.NewsBits.com
+            https://www.NotTodo.com
           </a>
         </li>
       </ul>
